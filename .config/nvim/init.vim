@@ -1,11 +1,8 @@
+" SOURCE FOR MOST OF THIS IS https://github.com/neovim/nvim-lspconfig/wiki
+
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath=&runtimepath
 source ~/.vimrc
-
-" No idea what most of this is tbh it's from the wiki page
-
-
-
 
 lua << EOF
 
