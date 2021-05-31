@@ -4,22 +4,35 @@
 
 set clipboard=unnamed
 set number
+set mouse=a
 set path+=**
 set backspace=indent,eol,start
 set tabstop=4 shiftwidth=4 expandtab
+filetype plugin indent on
+syntax on
 
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 
-"split navigations
+" split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" folding
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldlevel=99 " Open all folds
+
+
+inoremap <F9> <C-O>za
+nnoremap <F9> za
+onoremap <F9> <C-C>za
+vnoremap <F9> zf
+
 
 call plug#begin('~/.vim/plugged')
-
     " vim-commentary
     "   <g-c>
     Plug 'tpope/vim-commentary'
@@ -56,6 +69,8 @@ call plug#begin('~/.vim/plugged')
         autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
             \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
+    set signcolumn=number
+
     " other
     Plug 'ambv/black'
     Plug 'easymotion/vim-easymotion'
@@ -64,10 +79,21 @@ call plug#begin('~/.vim/plugged')
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
+    Plug 'Yggdroot/indentLine'
+    Plug 'joshdick/onedark.vim', { 'as': 'onedark' }
+
 
     if has('nvim')
         Plug 'neovim/nvim-lspconfig'
         Plug 'hrsh7th/nvim-compe'
+        Plug 'lukas-reineke/indent-blankline.nvim'
+        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+        Plug 'simrat39/symbols-outline.nvim'
+        nnoremap <leader>s :SymbolsOutline<CR>
+
     endif
 
 call plug#end()
+
+color onedark
+let g:onedark_termcolors=16
