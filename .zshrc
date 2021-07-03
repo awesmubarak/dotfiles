@@ -46,7 +46,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle Aloxaf/fzf-tab
 antigen bundle supercrabtree/k
 #antigen theme jackharrisonsherlock/common
-antigen theme Joroovb/common
+antigen bundle Joroovb/common
 antigen apply
 
 # aliases
@@ -69,5 +69,3 @@ then
 else
     alias ls='ls -G'
 fi
-
-
