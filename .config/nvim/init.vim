@@ -23,9 +23,8 @@ vim.g.symbols_outline = {
 }
 
 
-require'lspconfig'.pyright.setup{}
-
 -- Compe setup
+
 require'compe'.setup {
   enabled = true;
   autocomplete = true;
@@ -41,10 +40,13 @@ require'compe'.setup {
   documentation = true;
 
   source = {
-    path = true;
-    nvim_lsp = true;
+    path = true,
+    nvim_lsp = true,
+    utilsnips = true,
   };
 }
+
+require'lspconfig'.pyright.setup{}
 
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)

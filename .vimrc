@@ -20,11 +20,14 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" bufer switching
+nnoremap <silent> { :bp<CR>
+nnoremap <silent> } :bn<CR>
+
 " folding
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 set foldlevel=99 " Open all folds
-
 
 inoremap <F9> <C-O>za
 nnoremap <F9> za
@@ -54,7 +57,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline-themes'
     let g:airline_powerline_fonts = 0
     let g:airline_theme='bubblegum'
-    let g:airline#extensions#tabline#enabled = 1     " Show buffer list
 
     " Nerdtree
     Plug 'preservim/nerdtree'
@@ -74,13 +76,14 @@ call plug#begin('~/.vim/plugged')
     " other
     Plug 'ambv/black'
     Plug 'easymotion/vim-easymotion'
-    Plug 'ryanoasis/vim-devicons'
     Plug 'airblade/vim-gitgutter'
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'Yggdroot/indentLine'
     Plug 'joshdick/onedark.vim', { 'as': 'onedark' }
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
 
 
     if has('nvim')
@@ -89,9 +92,17 @@ call plug#begin('~/.vim/plugged')
         Plug 'lukas-reineke/indent-blankline.nvim'
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
         Plug 'simrat39/symbols-outline.nvim'
+        Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
         nnoremap <leader>s :SymbolsOutline<CR>
-
     endif
+
+    if exists('g:started_by_firenvim')
+        let g:airline#extensions#tabline#enabled = 0
+    else
+        Plug 'ryanoasis/vim-devicons'
+        let g:airline#extensions#tabline#enabled = 1
+    endif
+
 
 call plug#end()
 

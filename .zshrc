@@ -47,12 +47,19 @@ antigen bundle Aloxaf/fzf-tab
 antigen bundle supercrabtree/k
 #antigen theme jackharrisonsherlock/common
 antigen bundle Joroovb/common
+antigen theme Joroovb/common
 antigen apply
 
 # aliases
 alias c='clear'
 alias cdc='cd ~ && clear'
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+## spotify
+if  command -v spotify &> /dev/null
+then
+    alias s='spotify'
+fi
 
 ## nvim
 if  command -v nvim &> /dev/null
@@ -69,3 +76,4 @@ then
 else
     alias ls='ls -G'
 fi
+
